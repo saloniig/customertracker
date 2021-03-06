@@ -1,0 +1,72 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Tables {% endblock %} 
+
+<!-- Specific Plugin CSS goes HERE -->
+{% block plugin_stylesheets %}{% endblock plugin_stylesheets %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h3 class="page-title"> {{ textin }} </h3>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Tables</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Basic tables</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Tables</h4>
+              </p>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Time </th>
+                      <th>In</th>
+                      <th>Out</th>
+                      <th>Visitors present</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>11:00-12:00</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>12:00-1:00</td>
+                      <td>6</td>
+                      <td>7</td>
+                      <td>4</td>
+                    </tr>
+                    <tr>
+                      <td>1:00-2:00</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div> 
+{% endblock content %}
+
+<!-- Specific Plugin JS goes HERE  -->
+{% block plugin_javascripts %}{% endblock plugin_javascripts %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

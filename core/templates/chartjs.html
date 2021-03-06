@@ -1,0 +1,185 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Charts {% endblock %} 
+
+<!-- Specific Plugin CSS goes HERE -->
+{% block plugin_stylesheets %}{% endblock plugin_stylesheets %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title"> SALES VISUALIZER </h3>
+      
+    </div>
+    <div class="row">
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Line chart</h4>
+            <canvas id="lineChart" style="height:250px"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Bar chart</h4>
+            <canvas id="barChart" style="height:230px"></canvas>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="row">
+      <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Place A</h4>
+            <canvas id="doughnutChart1" style="height:250px"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Place B</h4>
+            <canvas id="doughnutChart2" style="height:250px"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Plugin JS goes HERE  -->
+{% block plugin_javascripts %}
+
+  <script src="/static/assets/vendors/chart.js/Chart.min.js"></script>
+
+{% endblock plugin_javascripts %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script src="/static/assets/js/chart.js"></script>
+<script>
+  var dict1 = []; 
+  console.log({{hourwise_customers1}})
+  console.log({{hourwise_customers2}})
+var dataFirst = {
+    label: "Location A",
+    data: {{ hourwise_customers1 | safe }},
+    fill: false,
+    borderColor: '#003366'
+  };
+
+var dataSecond = {
+    label: "Location B",
+    data: {{ hourwise_customers2 | safe }},
+    fill: false,
+  borderColor: '#7fff00'
+  };
+
+var speedData = {
+  labels: {{ labels |safe }},
+  datasets: [dataFirst, dataSecond]
+};
+
+var chartOptions = {
+  legend: {
+    display: true,
+    position: 'top',
+    labels: {
+      boxWidth: 50,
+      fontColor: '#ff6ec7'
+    },
+    line: {
+      tension: 0
+  },
+    scales: {
+      yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: '# customers'
+        },
+          ticks: {
+              suggestedMin: 1,
+              suggestedMax: 10,
+              stepSize: 1
+          }
+      }],
+      xAxes: [
+      
+      {display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'time '
+        },
+        
+    }]
+  }
+  }
+};
+
+var lineconfig = {
+  type: 'line',
+  data: speedData,
+  options: chartOptions
+};
+
+  var pieconfig1 = {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [{{city1item1 | safe}},{{city1item2 | safe}}, {{city1item3 |safe}}],
+        backgroundColor: [
+        '#1f77b4',
+        '#ff7f0e',
+        '#2ca02c',
+        '#d62728'         ],
+        label: 'Item wise sales'
+      }],
+      labels: ['school bag', 'hand bag', 'travelling bag']
+    },
+    options: {
+      responsive: true
+    }
+  };
+  var pieconfig2 = {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [{{city2item1 | safe}},{{city2item2 | safe}}, {{city2item3 |safe}}],
+        backgroundColor: [
+        '#1f77b4',
+        '#ff7f0e',
+        '#2ca02c',
+        '#d62728'        
+        ],
+        label: 'Item wise sales'
+      }],
+      labels: ['school bag', 'hand bag', 'travelling bag']
+    },
+
+    options: {
+      responsive: true
+    }
+  };
+
+    window.onload = function() {
+      var ctx1 = document.getElementById('doughnutChart1').getContext('2d');
+      var ctx2 = document.getElementById('doughnutChart2').getContext('2d');
+      var ctx3 = document.getElementById('lineChart').getContext('2d');
+      window.myPie = new Chart(ctx1, pieconfig1);
+      window.myPie = new Chart(ctx2, pieconfig2);
+      window.myLine = new Chart(ctx3, lineconfig);
+    };
+
+  </script>
+{% endblock javascripts %}
