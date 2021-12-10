@@ -47,11 +47,11 @@ class customer(models.Model):
     id = models.AutoField(primary_key=True, blank=True, null=False)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    phoneNumberRegex = RegexValidator(
-        regex=r"^\+?1?\d{8,15}$", message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    phone_number = models.CharField(
-        validators=[phoneNumberRegex], max_length=16, unique=True)
-    #phone_number = PhoneNumberField(unique=True, null=False, blank=False)
+    # phoneNumberRegex = RegexValidator(
+    #     regex=r"^\+?1?\d{8,15}$", message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    # phone_number = models.CharField(
+    #     validators=[phoneNumberRegex], max_length=16, unique=True)
+    phone_number = PhoneNumberField(unique=True, null=False, blank=False)
     city = models.ForeignKey(
         city, on_delete=models.CASCADE, blank=True, null=False, default='')
     item = models.ForeignKey(

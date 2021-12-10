@@ -11,6 +11,7 @@ import pyrebase
 import datetime
 import time
 from datetime import datetime
+import ipdb
 
 config = {
     "apiKey": "AIzaSyDCdeMINxVCsGu38B-qc05yrk1rW99Yq94",
@@ -45,6 +46,8 @@ def index(request):
             count=Count('item')).order_by('item').reverse()
         revenue_items = customer.objects.values('item').annotate(
             sum=Sum('price')).order_by('item').reverse()
+     #   ipdb.set_trace()
+
         data = []
         data.append(city1_customers.count())
         data.append(city2_customers.count())
