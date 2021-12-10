@@ -21,32 +21,28 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Sr. no</th>
+                      <th>Time</th>
                       <th>Customers entering</th>
                       <th>Customers leaving</th>
                       <th>customers staying</th>
                     </tr>
                   </thead>
                   <tbody>
+                    {% if data %}
+                    {% for d in data %}
                     <tr>
-                      <td>1</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
+                      <td>{{d.time}}</td>
+                      <td>{{d.customer_entering}}</td>
+                      <td>{{d.customer_leaving}}</td>
+                      <td>{{d.customer_staying}}</td>
                     </tr>
+                    {% endfor %}
+                   
+                    {% else %}
                     <tr>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>0</td>
-                      <td>1</td>
+                      <td>Doesn't exist</td>
                     </tr>
-                    <tr>
-                      <td>3</td>
-                      <td id="up">-</td>
-                      <td id="down">-</td>
-                      <td id="diff">-</td>
-                    </tr>
-                    
+                 {% endif %}
                   </tbody>
                 </table>
               </div>
@@ -59,10 +55,9 @@
     </div>
 
 
-
+<!-- 
     <script>
       $(document).ready(function(){
-
         $.ajax({
           url:"http://127.0.0.1:8000/visitor/visit/",
           type:'get',
@@ -76,7 +71,6 @@
             $("#diff").text(con)
             else
             $("#diff").text(0)
-
             console.log(response.up)
             console.log(response.up)
             console.log(response.up)
@@ -87,7 +81,7 @@
           }
         })
       });
-    </script>
+    </script> -->
 {% endblock content %}
 
 <!-- Specific Plugin JS goes HERE  -->
