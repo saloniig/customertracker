@@ -51,7 +51,7 @@ def index(request):
         data = []
         data.append(city1_customers.count())
         data.append(city2_customers.count())
-        labels = ['city A', 'city B']
+        labels = ['Ludhiana', 'Chandigarh']
         # data = customer_data.filter(city)
         # customer_data.filter.filter()
         context = {
@@ -144,8 +144,8 @@ def addsale(request):
 
             form.save()
             itemName = item.objects.get(pk=request.POST.get('item'))
-            itemName.stock = int(itemName.stock)
-            int(request.POST.get('quantity'))
+            itemName.stock = int(itemName.stock) - \
+                int(request.POST.get('quantity'))
             itemName.save()
             messages.success(request, ' submssion successful')
 

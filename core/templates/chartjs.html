@@ -38,7 +38,7 @@
       <div class="col-lg-6 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Place A</h4>
+            <h4 class="card-title">Ludhiana</h4>
             <canvas id="doughnutChart1" style="height:250px"></canvas>
           </div>
         </div>
@@ -46,7 +46,7 @@
       <div class="col-lg-6 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Place B</h4>
+            <h4 class="card-title">Chandigarh</h4>
             <canvas id="doughnutChart2" style="height:250px"></canvas>
           </div>
         </div>
@@ -73,14 +73,14 @@
   console.log({{hourwise_customers1}})
   console.log({{hourwise_customers2}})
 var dataFirst = {
-    label: "Location A",
+    label: "Ludhiana",
     data: {{ hourwise_customers1 | safe }},
     fill: false,
     borderColor: '#003366'
   };
 
 var dataSecond = {
-    label: "Location B",
+    label: "Chandigarh",
     data: {{ hourwise_customers2 | safe }},
     fill: false,
   borderColor: '#7fff00'
